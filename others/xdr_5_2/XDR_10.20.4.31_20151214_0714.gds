@@ -1,0 +1,4 @@
+device_type,data_version,metric_version,collection_time,id,section_status
+PVP,PKT-1,PVP-9,1450076407,844743765,0
+device_type,device_sn,app_type,collect_time,collect_zone,local_zone,duration,date,status
+PVP,PVPDG0900011,,1450077299,0,0,15,Dec 14 2015 07:14:59,0
