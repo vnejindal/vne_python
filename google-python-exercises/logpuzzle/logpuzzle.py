@@ -26,6 +26,20 @@ def read_urls(filename):
   increasing order."""
   # +++your code here+++
   
+  url_list = []
+  
+  fobj = open(filename, 'r')
+  if fobj.closed is True: 
+    print "Cannot open file", fobj.name
+    sys.exit(1)
+  for line in fobj: 
+    match = re.search(r'GET (.*puzzle.*.jpg).*', line, re.S)
+    if match: 
+      url_list.append(match.group(1))
+  
+  sorted_url_list = sorted(url_list)
+  
+  return sorted_url_list	  
 
 def download_images(img_urls, dest_dir):
   """Given the urls already in the correct order, downloads
