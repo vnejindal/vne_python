@@ -21,6 +21,7 @@ def follow_href():
     count -= 1
     # Retrieve all of the anchor tags
     tags = soup('a')
+    print tags
     for tag in tags:
       nurl = tag.get('href', None)
       pos -= 1
