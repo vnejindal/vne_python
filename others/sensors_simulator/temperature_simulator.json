@@ -1,0 +1,7 @@
+{
+    "_comment": "Configuration file for temperature_simulator.py",
+    "url":"http://api.openweathermap.org/data/2.5/weather",
+    "apikey":"be19d8c79a7f645deb802032834b0776",
+    "location_zip":"94016",
+    "country_code":"us"
+}
