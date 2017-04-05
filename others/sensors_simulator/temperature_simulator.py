@@ -1,10 +1,12 @@
 """
 Simulator for getting temperature readings based on temperature_simulator.json config file 
 OpenWeatherMap APIs 
+Includes a temperature units convertor as well
 """
 
 import urllib2
 import json
+from array import array
 from config import log_json_config
 
 json_config = {}
@@ -26,6 +28,25 @@ def k2c(t):
 
 def k2f(t):
     return (t*9/5.0)-459.67
+
+
+index_dict = {'kelvin':0, 'celcius': 1, 'fahrenheit': 2}
+marray = [[s2s, k2c, k2f], [c2k, s2s, c2f], [f2k, f2c, s2s]]
+
+def convert_unit(reading, funit, tunit):
+    """
+    Converts 'reading' from 'funit' to 'tunit'
+      funit, tunit: kelvin, celcius, fahrenheit (all in lowercase) 
+    
+                 kelvin   celcius    fahrenheit 
+      kelvin       s2s      k2c         k2f 
+      celcius      c2k      s2s         c2f
+      fahrenheit   f2k      f2c         s2s
+    """
+    global index_dict
+    global marray
+    return marray[index_dict[funit]][index_dict[tunit]](reading)
+
 
 
 def read_json_file(file_name):
@@ -53,7 +74,7 @@ def get_temperature_data():
     json_string = url_data.read()
     parsed_json = json.loads(json_string)
     
-    print k2c(parsed_json['main']['temp'])
+	print convert_unit(parsed_json['main']['temp'], 'kelvin', 'celcius')
     
     url_data.close()
     
